@@ -1,0 +1,13 @@
+Put your photo here and name it "profile.jpg".
+
+The Home page (Components/Pages/Home.razor) looks for it at:
+wwwroot/images/profile.jpg
+
+Recommended: a square photo, at least 500x500px, well-lit, plain background.
+If you'd rather use a .png, change PersonalInfo.PhotoUrl in Data/PortfolioData.cs
+to "images/profile.png".
+
+Until a photo is added here, the homepage automatically shows a circle
+with your initials instead -- so it's safe to leave this empty for now.
+
+You can delete this file once your photo is in place.

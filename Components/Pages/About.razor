@@ -1,0 +1,102 @@
+@page "/about"
+
+<PageTitle>About — @PortfolioData.PersonalInfo.FullName</PageTitle>
+
+<!-- About Section -->
+<section class="page-header" style="padding-bottom: 20px;">
+    <div class="container">
+        <p class="eyebrow" style="font-size: 1.8rem; font-weight: 700; color: #3454D1; text-align: center; letter-spacing: 0.06em; margin: 0 0 0.3em 0; text-transform: uppercase;">about</p>
+        <h2 style="text-align: center; margin-bottom: 0.3em;">About Me</h2>
+        <p class="page-subtitle" style="text-align: center; max-width: 620px; margin: 0 auto; color: #5B6472;">
+            Always learning, building, and improving as a developer.
+        </p>
+    </div>
+</section>
+
+<section class="section" style="padding-top: 0; padding-bottom: 40px;">
+    <div class="container">
+        <div style="max-width: 900px; margin: 0 auto;">
+
+            <!-- Background -->
+            <div style="background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);">
+                <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: 600; margin: 0 0 0.5em 0; color: #1A2332; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #3454D1;">👤</span> Background
+                </h3>
+                <p style="color: #5B6472; font-size: 0.95rem; line-height: 1.7; margin-bottom: 0;">
+                    I am a Computer Science student at INTI International University with a strong interest in building scalable and maintainable software systems. I enjoy writing clean, structured code that follows good software design principles and is easy to understand and maintain.
+                </p>
+                <p style="color: #5B6472; font-size: 0.95rem; line-height: 1.7; margin-top: 0.8em; margin-bottom: 0;">
+                    This portfolio is built using <strong style="color: #1A2332;">C#</strong> and the <strong style="color: #1A2332;">.NET</strong> ecosystem, including ASP.NET Core for APIs, Entity Framework Core for data modeling, and Blazor for interactive web interfaces.
+                </p>
+            </div>
+
+            <!-- Education -->
+            <div style="background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);">
+                <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: 600; margin: 0 0 0.5em 0; color: #1A2332; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #3454D1;">🎓</span> Education
+                </h3>
+                @foreach (var entry in PortfolioData.Experience.Where(e => e.Type == ExperienceType.Education))
+                {
+                    <div style="padding: 12px 0; border-bottom: 1px solid #F1F3F6;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px;">
+                            <div>
+                                <h4 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1rem; font-weight: 600; margin: 0; color: #1A2332;">@entry.Title</h4>
+                                <p style="font-size: 0.9rem; color: #5B6472; margin: 2px 0 0 0;">@entry.Organization</p>
+                            </div>
+                            <span style="font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.75rem; color: #8891A0; background: #F1F3F6; padding: 4px 12px; border-radius: 999px; white-space: nowrap;">@entry.Period</span>
+                        </div>
+                        <ul style="margin: 6px 0 0 0; padding: 0; list-style: none;">
+                            @foreach (var highlight in entry.Highlights)
+                            {
+                                <li style="font-size: 0.88rem; color: #5B6472; padding: 2px 0 2px 18px; position: relative;">
+                                    <span style="position: absolute; left: 0; color: #3454D1;">•</span> @highlight
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+
+            <!-- Career Goals & Interests -->
+            <div style="background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 10px; padding: 28px 32px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);">
+                <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1.1rem; font-weight: 600; margin: 0 0 0.5em 0; color: #1A2332; display: flex; align-items: center; gap: 10px;">
+                    <span style="color: #3454D1;">🎯</span> Career Goals &amp; Interests
+                </h3>
+                <p style="color: #5B6472; font-size: 0.95rem; line-height: 1.7; margin-bottom: 1em;">
+                    I am actively seeking a <strong style="color: #1A2332;">software engineering internship</strong> starting August 2026 where I can contribute to real-world systems and learn from experienced engineers. I am passionate about exploring various fields in technology and continuously expanding my skillset.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #FAFAF8; border-radius: 8px; border-left: 3px solid #3454D1;">
+                        <span style="font-size: 1.2rem;">💻</span>
+                        <div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: #1A2332;">Software Developer</div>
+                            <div style="font-size: 0.75rem; color: #8891A0;">Full-stack &amp; Backend</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #FAFAF8; border-radius: 8px; border-left: 3px solid #0F7B6C;">
+                        <span style="font-size: 1.2rem;">🤖</span>
+                        <div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: #1A2332;">AI Engineer</div>
+                            <div style="font-size: 0.75rem; color: #8891A0;">Machine Learning &amp; AI</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #FAFAF8; border-radius: 8px; border-left: 3px solid #3454D1;">
+                        <span style="font-size: 1.2rem;">🎮</span>
+                        <div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: #1A2332;">Game Developer</div>
+                            <div style="font-size: 0.75rem; color: #8891A0;">Interactive &amp; Immersive</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #FAFAF8; border-radius: 8px; border-left: 3px solid #0F7B6C;">
+                        <span style="font-size: 1.2rem;">📊</span>
+                        <div>
+                            <div style="font-size: 0.85rem; font-weight: 600; color: #1A2332;">Data Science &amp; Analytics</div>
+                            <div style="font-size: 0.75rem; color: #8891A0;">Data-driven Insights</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

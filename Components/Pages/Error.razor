@@ -1,0 +1,25 @@
+@page "/Error"
+@using Microsoft.AspNetCore.Mvc
+@attribute [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+
+<PageTitle>Error</PageTitle>
+
+<section class="page-header">
+    <div class="container">
+        <p class="eyebrow">// error</p>
+        <h1>Something went wrong</h1>
+        <p class="page-subtitle">An unexpected error occurred. <a href="/">Return home →</a></p>
+    </div>
+</section>
+
+@code {
+    [CascadingParameter]
+    private HttpContext? HttpContext { get; set; }
+
+    private string? RequestId { get; set; }
+
+    protected override void OnInitialized()
+    {
+        RequestId = System.Diagnostics.Activity.Current?.Id ?? HttpContext?.TraceIdentifier;
+    }
+}

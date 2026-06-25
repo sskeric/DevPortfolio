@@ -1,0 +1,22 @@
+## .NET
+bin/
+obj/
+*.user
+*.userosscache
+*.suo
+
+## Visual Studio
+.vs/
+*.vssscc
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Publish
+publish/
+*.publishsettings

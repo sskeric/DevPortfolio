@@ -1,0 +1,6 @@
+Put your résumé PDF here and name it "resume.pdf".
+
+The "Download résumé" button on the Home page links to /files/resume.pdf
+(set in Data/PortfolioData.cs -> PersonalInfo.ResumeUrl).
+
+Once you add resume.pdf to this folder, you can delete this file.

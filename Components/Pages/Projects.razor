@@ -1,0 +1,86 @@
+@page "/projects"
+
+<PageTitle>Projects — @PortfolioData.PersonalInfo.FullName</PageTitle>
+
+<!-- Projects Section -->
+<section class="page-header" style="padding-bottom: 20px;">
+    <div class="container">
+        <p class="eyebrow" style="font-size: 1.8rem; font-weight: 700; color: #3454D1; text-align: center; letter-spacing: 0.06em; margin: 0 0 0.3em 0; text-transform: uppercase;">projects</p>
+        <h2 style="text-align: center; margin-bottom: 0.3em;">Things I've built</h2>
+        <p class="page-subtitle" style="text-align: center; max-width: 620px; margin: 0 auto; color: #5B6472;">
+            A showcase of my group projects, personal projects, coursework.
+        </p>
+    </div>
+</section>
+
+<section class="section" style="padding-top: 0; padding-bottom: 40px;">
+    <div class="container">
+        <!-- Filter Row -->
+        <div class="filter-row" style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 32px;">
+            <button class="filter-pill @(_selectedCategory is null ? "active" : "")" @onclick="@(() => SelectCategory(null))" style="font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.82rem; background: @(_selectedCategory is null ? "#1A2332" : "#FFFFFF"); border: 1px solid #E2E5EA; color: @(_selectedCategory is null ? "#FFFFFF" : "#5B6472"); padding: 8px 16px; border-radius: 999px; transition: all 0.16s ease; cursor: pointer;">
+                All
+            </button>
+            @foreach (var category in Categories)
+            {
+                <button class="filter-pill @(_selectedCategory == category ? "active" : "")" @onclick="@(() => SelectCategory(category))" style="font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.82rem; background: @(_selectedCategory == category ? "#1A2332" : "#FFFFFF"); border: 1px solid #E2E5EA; color: @(_selectedCategory == category ? "#FFFFFF" : "#5B6472"); padding: 8px 16px; border-radius: 999px; transition: all 0.16s ease; cursor: pointer;">
+                    @category
+                </button>
+            }
+        </div>
+
+        @if (FilteredProjects.Any())
+        {
+            <div class="project-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                @foreach (var project in FilteredProjects)
+                {
+                    <div class="project-card" style="background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; gap: 12px; transition: box-shadow 0.16s ease, transform 0.16s ease, border-color 0.16s ease;">
+                        <div class="project-card-header" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                            <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1.15rem; font-weight: 600; margin: 0; color: #1A2332;">@project.Title</h3>
+                            @if (project.Featured)
+                            {
+                                <span class="featured-tag" style="font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; color: #3454D1; background: #EAEFFD; padding: 3px 8px; border-radius: 999px; white-space: nowrap;">Featured</span>
+                            }
+                        </div>
+                        <p class="project-desc" style="font-size: 0.92rem; margin: 0; flex: 1; color: #5B6472;">@project.Description</p>
+                        <div class="project-tags" style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            @foreach (var tech in project.TechStack)
+                            {
+                                <span class="tech-badge" style="display: inline-block; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.74rem; color: #1A2332; background: #F1F3F6; border: 1px solid #E2E5EA; padding: 3px 9px; border-radius: 6px;">@tech</span>
+                            }
+                        </div>
+                        <div class="project-links" style="display: flex; gap: 16px; margin-top: 4px;">
+                            @if (!string.IsNullOrEmpty(project.GitHubUrl))
+                            {
+                                <a href="@project.GitHubUrl" target="_blank" class="project-link" style="font-size: 0.86rem; font-weight: 600; color: #3454D1; text-decoration: none;">GitHub</a>
+                            }
+                            @if (!string.IsNullOrEmpty(project.LiveUrl))
+                            {
+                                <a href="@project.LiveUrl" target="_blank" class="project-link" style="font-size: 0.86rem; font-weight: 600; color: #3454D1; text-decoration: none;">Live Demo</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="empty-state" style="color: #8891A0; font-style: italic; text-align: center; padding: 40px 0;">No projects in this category yet.</p>
+        }
+    </div>
+</section>
+
+@code {
+    private string? _selectedCategory;
+
+    private List<string> Categories => PortfolioData.Projects
+        .Select(p => p.Category)
+        .Distinct()
+        .OrderBy(c => c)
+        .ToList();
+
+    private IEnumerable<Project> FilteredProjects => _selectedCategory is null
+        ? PortfolioData.Projects
+        : PortfolioData.Projects.Where(p => p.Category == _selectedCategory);
+
+    private void SelectCategory(string? category) => _selectedCategory = category;
+}

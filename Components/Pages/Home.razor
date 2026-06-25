@@ -1,0 +1,144 @@
+@page "/"
+@using Microsoft.AspNetCore.Hosting
+@inject IWebHostEnvironment Env
+
+<PageTitle>@PortfolioData.PersonalInfo.FullName — @PortfolioData.PersonalInfo.Headline</PageTitle>
+
+<!-- Eyebrow Section -->
+<div class="container" style="padding-top: 40px; padding-bottom: 0;">
+    <div style="max-width: 1100px; margin: 0 auto;">
+        <p class="eyebrow" style="font-size: 1.8rem; font-weight: 700; color: #3454D1; text-align: left; letter-spacing: 0.06em; margin: 0 0 0.3em 0; text-transform: uppercase;">
+            @PortfolioData.PersonalInfo.Headline.ToLowerInvariant()
+        </p>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<section class="hero" style="padding: 20px 0 40px;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto;">
+
+            <!-- Left: Text Content -->
+            <div class="hero-text" style="display: flex; flex-direction: column; gap: 16px;">
+                <h1 style="font-size: clamp(2.5rem, 4vw, 2.5rem); font-weight: 700; margin: 0; line-height: 1.1; color: #1A2332;">
+                    @PortfolioData.PersonalInfo.FullName
+                </h1>
+                <p style="font-size: 1.1rem; color: #5B6472; margin: 0; line-height: 1.6; max-width: 500px;">
+                    @PortfolioData.PersonalInfo.Tagline
+                </p>
+                <div class="status-line" style="display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.85rem; color: #0F7B6C; background: #E4F2EF; padding: 8px 18px; border-radius: 999px; width: fit-content; margin: 4px 0;">
+                    <span class="status-dot" style="width: 8px; height: 8px; border-radius: 50%; background: #0F7B6C; display: inline-block;"></span>
+                    @PortfolioData.PersonalInfo.Location
+                </div>
+                <div class="hero-actions" style="display: flex; gap: 14px; flex-wrap: wrap; margin-top: 4px;">
+                    <a class="btn btn-primary" href="@PortfolioData.PersonalInfo.CertificateUrl" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; background: #1A2332; color: #FFFFFF !important; border: 2px solid #1A2332; transition: all 0.16s ease; text-decoration: none; flex: 1; min-width: 120px;">
+                        📄 View Certificate
+                    </a>
+                    <a class="btn btn-secondary" href="@PortfolioData.PersonalInfo.ResumeUrl" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.85rem; background: #3454D1; color: #FFFFFF !important; border: 2px solid #3454D1; transition: all 0.16s ease; text-decoration: none; flex: 1; min-width: 120px; box-shadow: 0 4px 12px rgba(52, 84, 209, 0.25);">
+                        📄 View Résumé
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Photo -->
+            <div class="hero-photo" style="display: flex; justify-content: center; align-items: center;">
+                @if (HasPhoto)
+                {
+                    <img src="@PortfolioData.PersonalInfo.PhotoUrl" alt="@PortfolioData.PersonalInfo.FullName" style="width: 280px; height: 280px; border-radius: 50%; object-fit: cover; border: 4px solid #FFFFFF; box-shadow: 0 8px 24px rgba(26, 35, 50, 0.12);" />
+                }
+                else
+                {
+                    <div class="hero-photo-placeholder" style="width: 280px; height: 280px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #3454D1; color: #FFFFFF; font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 4rem; font-weight: 700; border: 4px solid #FFFFFF; box-shadow: 0 8px 24px rgba(26, 35, 50, 0.12);">
+                        @Initials
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section style="padding: 16px 0 0 0; background: #FAFAF8;">
+    <div class="container">
+        <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+            <p style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1.2rem; font-weight: 400; color: #1A2332; line-height: 1.7; margin: 0;">
+                "I'm a self-taught developer who's still learning every day. I make mistakes, but I always try my best to build things that work — and work well."
+            </p>
+            <p style="font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.85rem; color: #0F7B6C; margin: 8px 0 0 0; background: #E4F2EF; padding: 4px 16px; border-radius: 999px; display: inline-block;">
+                🎓 — Open to software engineering internships starting Aug 2026
+            </p>
+        </div>
+    </div>
+</section>
+
+<br />
+
+<!-- Quick Links / Call to Action -->
+<section style="padding: 12px 0 20px 0; background: #FAFAF8;">
+    <div class="container">
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; max-width: 1100px; margin: 0 auto;">
+
+            <!-- Skills Card -->
+            <a href="/skills" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 12px; padding: 24px 16px; text-align: center; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);"
+               onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(26,35,50,0.1)'; this.style.borderColor='#3454D1';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 2px rgba(26,35,50,0.06)'; this.style.borderColor='#E2E5EA';">
+                <div style="font-size: 2.2rem; margin-bottom: 4px;">🛠️</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: #1A2332; font-family: 'Space Grotesk', 'Segoe UI', sans-serif;">@TotalSkillsCount</div>
+                <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 1rem; font-weight: 600; margin: 4px 0 4px 0; color: #1A2332;">Skills</h3>
+                <p style="font-size: 0.8rem; color: #5B6472; margin: 0;">Explore my skills &amp; tools</p>
+            </a>
+
+            <!-- Projects Card -->
+            <a href="/projects" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 12px; padding: 24px 16px; text-align: center; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);"
+               onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(26,35,50,0.1)'; this.style.borderColor='#3454D1';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 2px rgba(26,35,50,0.06)'; this.style.borderColor='#E2E5EA';">
+                <div style="font-size: 2.2rem; margin-bottom: 4px;">🚀</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: #1A2332; font-family: 'Space Grotesk', 'Segoe UI', sans-serif;">@PortfolioData.Projects.Count</div>
+                <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 600; margin: 4px 0 4px 0; color: #1A2332;">Projects</h3>
+                <p style="font-size: 0.8rem; color: #5B6472; margin: 0;">See what I've built</p>
+            </a>
+
+            <!-- Experience Card -->
+            <a href="/experience" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 12px; padding: 24px 16px; text-align: center; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);"
+               onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(26,35,50,0.1)'; this.style.borderColor='#3454D1';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 2px rgba(26,35,50,0.06)'; this.style.borderColor='#E2E5EA';">
+                <div style="font-size: 2.2rem; margin-bottom: 4px;">💼</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: #1A2332; font-family: 'Space Grotesk', 'Segoe UI', sans-serif;">@WorkExperienceCount</div>
+                <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 600; margin: 4px 0 4px 0; color: #1A2332;">Experience</h3>
+                <p style="font-size: 0.8rem; color: #5B6472; margin: 0;">View my work history</p>
+            </a>
+
+            <!-- Contact Card -->
+            <a href="/contact" style="text-decoration: none; background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 12px; padding: 24px 16px; text-align: center; transition: all 0.2s ease; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);"
+               onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 8px 24px rgba(26,35,50,0.1)'; this.style.borderColor='#3454D1';"
+               onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 1px 2px rgba(26,35,50,0.06)'; this.style.borderColor='#E2E5EA';">
+                <div style="font-size: 2.2rem; margin-bottom: 4px;">📬</div>
+                <div style="font-size: 1.8rem; font-weight: 700; color: #1A2332; font-family: 'Space Grotesk', 'Segoe UI', sans-serif;">✉️</div>
+                <h3 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 600; margin: 4px 0 4px 0; color: #1A2332;">Contact</h3>
+                <p style="font-size: 0.8rem; color: #5B6472; margin: 0;">Get in touch with me</p>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+@code {
+    private int DistinctTechCount => PortfolioData.Projects.SelectMany(p => p.TechStack).Distinct().Count();
+    private int WorkExperienceCount => PortfolioData.Experience.Count(e => e.Type == ExperienceType.Work);
+    
+    private int SkillCategoryCount => PortfolioData.SkillCategories.Count;
+    private int SoftSkillsCount => PortfolioData.SoftSkills.Count;
+    private int LanguageSkillsCount => PortfolioData.LanguageSkills.Count;
+
+    // Total skills count
+    private int TotalSkillsCount => SkillCategoryCount + SoftSkillsCount + LanguageSkillsCount;
+
+    private bool HasPhoto => !string.IsNullOrEmpty(PortfolioData.PersonalInfo.PhotoUrl) &&
+                             File.Exists(Path.Combine(Env.WebRootPath, PortfolioData.PersonalInfo.PhotoUrl.Replace('/', Path.DirectorySeparatorChar)));
+
+    private string Initials => string.Concat(
+        PortfolioData.PersonalInfo.FullName
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(word => word[0]))
+        .ToUpperInvariant();
+}

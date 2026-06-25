@@ -1,0 +1,36 @@
+<header class="site-header">
+    <div class="container nav-inner">
+        <NavLink href="/" Match="NavLinkMatch.All" class="brand">
+            <span class="brand-mark">E</span>
+            <span class="brand-name">@PortfolioData.PersonalInfo.FullName</span>
+        </NavLink>
+
+        <button class="nav-toggle" @onclick="ToggleNav" aria-label="Toggle navigation" aria-expanded="@_isOpen.ToString().ToLowerInvariant()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-links @(_isOpen ? "open" : "")">
+            <NavLink href="/" Match="NavLinkMatch.All" @onclick="CloseNav">Home</NavLink>
+            <NavLink href="/about" @onclick="CloseNav">About</NavLink>
+            <NavLink href="/skills" @onclick="CloseNav">Skills</NavLink>
+            <NavLink href="/projects" @onclick="CloseNav">Projects</NavLink>
+            <NavLink href="/experience" @onclick="CloseNav">Experience</NavLink>
+            <NavLink href="/contact" @onclick="CloseNav">Contact</NavLink>
+        </nav>
+    </div>
+</header>
+
+@code {
+    private bool _isOpen;
+
+    private string Initials => string.Concat(
+        PortfolioData.PersonalInfo.FullName
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(word => word[0]))
+        .ToUpperInvariant();
+
+    private void ToggleNav() => _isOpen = !_isOpen;
+    private void CloseNav() => _isOpen = false;
+}

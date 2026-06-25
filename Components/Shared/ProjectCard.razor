@@ -1,0 +1,34 @@
+<article class="project-card">
+    <div class="project-card-header">
+        <h3>@Project.Title</h3>
+        @if (Project.Featured)
+        {
+            <span class="featured-tag">featured</span>
+        }
+    </div>
+
+    <p class="project-desc">@Project.Description</p>
+
+    <div class="project-tags">
+        @foreach (var tech in Project.TechStack)
+        {
+            <TechBadge Text="@tech" />
+        }
+    </div>
+
+    <div class="project-links">
+        @if (!string.IsNullOrWhiteSpace(Project.GitHubUrl))
+        {
+            <a href="@Project.GitHubUrl" target="_blank" rel="noopener" class="project-link">Code →</a>
+        }
+        @if (!string.IsNullOrWhiteSpace(Project.LiveUrl))
+        {
+            <a href="@Project.LiveUrl" target="_blank" rel="noopener" class="project-link">Live demo →</a>
+        }
+    </div>
+</article>
+
+@code {
+    [Parameter, EditorRequired]
+    public Project Project { get; set; } = default!;
+}

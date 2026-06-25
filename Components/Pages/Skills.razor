@@ -1,0 +1,126 @@
+﻿@page "/skills"
+
+<PageTitle>Skills — @PortfolioData.PersonalInfo.FullName</PageTitle>
+
+<!-- Skills Section -->
+<section class="page-header" style="padding-bottom: 20px;">
+    <div class="container">
+        <p class="eyebrow" style="font-size: 1.8rem; font-weight: 700; color: #3454D1; text-align: center; letter-spacing: 0.06em; margin: 0 0 0.3em 0; text-transform: uppercase;">skills</p>
+        <h2 style="text-align: center; margin-bottom: 0.3em;">My Skills</h2>
+        <p class="page-subtitle" style="text-align: center; max-width: 620px; margin: 0 auto; color: #5B6472;">
+            These are the technologies, tools, and soft skills I learned.
+        </p>
+    </div>
+</section>
+
+<br />
+<section class="section" style="padding-top: 0; padding-bottom: 40px;">
+    <div class="container">
+        <div style="max-width: 900px; margin: 0 auto;">
+
+            <!-- Technical Skills - Two Column Grid -->
+            <h2 style="text-align: center; margin-bottom: 0.5em; font-size: 2.0rem; color: #1A2332;">Technical Skills</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px;">
+                @foreach (var category in PortfolioData.SkillCategories)
+                {
+                    <div style="background: #FFFFFF; border: 1px solid #E2E5EA; border-radius: 10px; padding: 24px; box-shadow: 0 1px 2px rgba(26, 35, 50, 0.06);">
+                        <h4 style="font-family: 'Space Grotesk', 'Segoe UI', sans-serif; font-size: 0.95rem; font-weight: 600; margin: 0 0 0.5em 0; color: #3454D1; text-transform: uppercase; letter-spacing: 0.04em;">
+                            @category.Name
+                        </h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+                            @foreach (var skill in category.Skills)
+                            {
+                                <span style="display: inline-block; font-family: 'IBM Plex Mono', 'Consolas', monospace; font-size: 0.72rem; color: #1A2332; background: #F1F3F6; border: 1px solid #E2E5EA; padding: 4px 10px; border-radius: 4px;">
+                                    @skill
+                                </span>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <br />
+            <!-- Soft Skills -->
+            <h2 style="text-align:center; margin-bottom:0.5em; font-size: 2.0rem; color: #1A2332;">Soft Skills</h2>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom: 24px;">
+                @foreach (var skill in PortfolioData.SoftSkills)
+                {
+                    <div style="
+                        background:#FFFFFF;
+                        border:1px solid #E2E5EA;
+                        border-radius:10px;
+                        padding:20px;
+                        box-shadow:0 1px 2px rgba(26,35,50,0.06);">
+
+                        <h4 style="
+                            color:#3454D1;
+                            margin-bottom:8px;
+                            font-size:1rem;">
+                            @skill.Name
+                        </h4>
+
+                        <p style="
+                            color:#5B6472;
+                            margin:0;
+                            line-height:1.6;
+                            font-size:0.9rem;">
+                            @skill.Description
+                        </p>
+
+                    </div>
+                }
+            </div>
+
+            <br />
+            <!-- Language Skills -->
+            <h2 style="text-align:center; margin-bottom:0.5em; font-size: 2.0rem; color: #1A2332;">Language Skills</h2>
+
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; margin-bottom: 24px;">
+                @foreach (var language in PortfolioData.LanguageSkills)
+                {
+                    <div style="
+                        background:#FFFFFF;
+                        border:1px solid #E2E5EA;
+                        border-radius:10px;
+                        padding:20px 24px;
+                        box-shadow:0 1px 2px rgba(26,35,50,0.06);
+                        text-align:center;">
+
+                        <h4 style="
+                            color:#1A2332;
+                            margin-bottom:8px;
+                            font-size:1.1rem;
+                            font-weight:600;">
+                            @language.Name
+                        </h4>
+
+                        <div style="display: flex; justify-content: center; gap: 4px; margin: 8px 0;">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                if (i <= language.Proficiency)
+                                {
+                                    <span style="color: #FFB800; font-size: 1.5rem;">★</span>
+                                }
+                                else
+                                {
+                                    <span style="color: #E2E5EA; font-size: 1.5rem;">★</span>
+                                }
+                            }
+                        </div>
+
+                        <p style="
+                            color:#8891A0;
+                            margin:4px 0 0 0;
+                            font-size:0.8rem;
+                            font-family: 'IBM Plex Mono', 'Consolas', monospace;">
+                            @(language.Proficiency) / 5
+                        </p>
+
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</section>

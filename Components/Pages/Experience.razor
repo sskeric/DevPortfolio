@@ -1,0 +1,38 @@
+@page "/experience"
+
+<PageTitle>Experience — @PortfolioData.PersonalInfo.FullName</PageTitle>
+
+<section class="page-header" style="padding-bottom: 20px;">
+    <div class="container">
+        <p class="eyebrow" style="font-size: 1.8rem; font-weight: 700; color: #3454D1; text-align: center; letter-spacing: 0.06em; margin: 0 0 0.3em 0; text-transform: uppercase;">experience</p>
+        <h2 style="text-align: center; margin-bottom: 0.3em;">Work experience</h2>
+        <p class="page-subtitle" style="text-align: center; max-width: 620px; margin: 0 auto; color: #5B6472;">
+            I have over 1 year of professional experience.
+        </p>
+    </div>
+</section>
+
+<div class="container">
+    <ol class="timeline" style="margin-top: 0;">
+        @foreach (var entry in PortfolioData.Experience.Where(e => e.Type == ExperienceType.Work))
+        {
+            <li class="timeline-item" style="padding-bottom: 32px;">
+                <div class="timeline-marker marker-work"></div>
+                <div class="timeline-content">
+                    <p class="timeline-period">@entry.Period</p>
+                    <h3>@entry.Title</h3>
+                    <p class="timeline-org">@entry.Organization</p>
+                    @if (entry.Highlights.Any())
+                    {
+                        <ul class="timeline-highlights">
+                            @foreach (var highlight in entry.Highlights)
+                            {
+                                <li>@highlight</li>
+                            }
+                        </ul>
+                    }
+                </div>
+            </li>
+        }
+    </ol>
+</div>
